@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAKSTAR - Luxury Rolex Watches</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #333333;
+            --light: #f5f5f5;
+            --text: #000000;
+            --gray: #666666;
+            --border: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--light) 100%);
+            z-index: 1000;
+            transition: opacity 0.8s ease-out;
+        }
+
+        .welcome-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .main-title {
+            font-size: 8rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            line-height: 1;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .welcome-subtitle {
+            font-size: 1.5rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            color: var(--gray);
+            font-weight: 300;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        .welcome-line {
+            width: 100px;
+            height: 2px;
+            background: var(--primary);
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+        }
+
+        .enter-btn {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 1.5rem 4rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: fadeInUp 1.2s ease-out 0.9s both;
+            cursor: pointer;
+        }
+
+        .enter-btn:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: none;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--secondary);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary);
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        nav ul li a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .header-actions a {
+            color: var(--primary);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .header-actions a:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--light) 100%);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            color: var(--gray);
+            font-weight: 300;
+        }
+
+        .hero-line {
+            width: 80px;
+            height: 1px;
+            background: var(--primary);
+            margin: 0 auto 3rem;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 2rem;
+            background: var(--secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            font-weight: 300;
+        }
+
+        .section-line {
+            width: 60px;
+            height: 1px;
+            background: var(--primary);
+            margin: 2rem auto;
+        }
+
+        .product-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .product-card {
+            background: var(--secondary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 400px;
+            background: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: var(--secondary);
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-info {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .product-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--secondary);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--primary);
+        }
+
+        .product-btn:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        .contact-line {
+            width: 60px;
+            height: 1px;
+            background: var(--secondary);
+            margin: 2rem auto 3rem;
+        }
+
+        .email-section {
+            background: var(--secondary);
+            padding: 3rem;
+            margin-top: 3rem;
+        }
+
+        .email-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .email-address {
+            font-size: 1.8rem;
+            color: var(--primary);
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin: 2rem 0;
+            padding: 1rem 2rem;
+            background: var(--light);
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .email-address:hover {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .email-note {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: var(--secondary);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            border-color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 4rem;
+                letter-spacing: 8px;
+            }
+            
+            .welcome-subtitle {
+                font-size: 1.2rem;
+                letter-spacing: 4px;
+            }
+            
+            .enter-btn {
+                padding: 1.2rem 3rem;
+                font-size: 1rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .email-address {
+                font-size: 1.3rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 3rem;
+                letter-spacing: 6px;
+            }
+            
+            .section-title, .contact-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content">
+            <h1 class="main-title">WAKSTAR</h1>
+            <div class="welcome-line"></div>
+            <p class="welcome-subtitle">Luxury Rolex Timepieces</p>
+            <div class="enter-btn" id="enterBtn">Enter</div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Header -->
+        <header>
+            <div class="header-container">
+                <div class="logo">WAK<span>STAR</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#collection">Collection</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                    <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="hero-title">Timeless Elegance</h1>
+                <div class="hero-line"></div>
+                <p class="hero-subtitle">Discover Our Exclusive Rolex Collection</p>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products" id="collection">
+            <div class="section-header">
+                <h2 class="section-title">Iconic Collection</h2>
+                <p class="section-subtitle">Masterpiece Timepieces</p>
+                <div class="section-line"></div>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Rolex Submariner -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Rolex Submariner">
+                        <div class="product-badge">Bestseller</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Rolex Submariner</h3>
+                        <p class="product-description">The iconic diving watch, water resistant to 300 meters with timeless design.</p>
+                        <div class="product-price">$10,800</div>
+                        <a href="#contact" class="product-btn">Inquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Rolex Datejust -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Rolex Datejust">
+                        <div class="product-badge">Classic</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Rolex Datejust</h3>
+                        <p class="product-description">Elegant and versatile with date function and iconic fluted bezel.</p>
+                        <div class="product-price">$12,500</div>
+                        <a href="#contact" class="product-btn">Inquire Now</a>
+                    </div>
+                </div>
+
+                <!-- Rolex Daytona -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1609588044301-7c58737d3c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1180&q=80" alt="Rolex Daytona">
+                        <div class="product-badge">Limited</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Rolex Daytona</h3>
+                        <p class="product-description">The ultimate chronograph designed for professional racing drivers.</p>
+                        <div class="product-price">$15,200</div>
+                        <a href="#contact" class="product-btn">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="contact-container">
+                <h2 class="contact-title">Contact Us</h2>
+                <p class="contact-subtitle">Get in Touch for Luxury Timepieces</p>
+                <div class="contact-line"></div>
+                
+                <div class="email-section">
+                    <h3 class="email-title">Send us an email at</h3>
+                    <div class="email-address">wakstarprojet@gmail.com</div>
+                    <p class="email-note">We'll respond within 24 hours to discuss availability, pricing, and delivery options.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>WAKSTAR</h3>
+                    <p>Your trusted source for authentic luxury Rolex watches. Excellence in every timepiece.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Collection</h3>
+                    <a href="#collection">Submariner</a>
+                    <a href="#collection">Datejust</a>
+                    <a href="#collection">Daytona</a>
+                    <a href="#collection">GMT-Master II</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <p>wakstarprojet@gmail.com</p>
+                    <p>Response within 24 hours</p>
+                    <p>Worldwide shipping available</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 WAKSTAR. All rights reserved. Rolex is a registered trademark.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Enter button functionality
+        document.getElementById('enterBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Hide welcome screen with animation
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            welcomeScreen.style.opacity = '0';
+            
+            // Show main content after animation
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                
+                // Smooth scroll to top
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 800);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Email copy functionality
+        const emailElement = document.querySelector('.email-address');
+        if (emailElement) {
+            emailElement.addEventListener('click', function() {
+                const email = this.textContent;
+                navigator.clipboard.writeText(email).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied to clipboard!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        }
+
+        // Add some interactive effects to welcome screen
+        const welcomeScreen = document.getElementById('welcomeScreen');
+        
+        // Mouse move parallax effect
+        welcomeScreen.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth - e.pageX * 2) / 100;
+            const y = (window.innerHeight - e.pageY * 2) / 100;
+            const title = document.querySelector('.main-title');
+            title.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+
+        // Pulse animation for the button
+        const enterBtn = document.getElementById('enterBtn');
+        setInterval(() => {
+            enterBtn.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                enterBtn.style.transform = 'scale(1)';
+            }, 500);
+        }, 2000);
+    </script>
+</body>
+</html>
